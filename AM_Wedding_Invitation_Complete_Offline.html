@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#14251f">
+<title>دعوة زفاف | A & M</title>
+<style>
+/* Self-contained file: uses installed system fonts; no external files required. */
+:root{--forest:#14251f;--green:#263d32;--gold:#c7a66a;--cream:#f6f0e5;--ink:#24332c}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--cream);color:var(--ink);font-family:'Cairo','Tahoma',Arial,sans-serif}
+button,input,select,textarea{font:inherit}.hero{min-height:100svh;background:radial-gradient(ellipse at 50% 30%,#405a49 0,#1c3329 50%,#101e19 100%);display:grid;place-items:center;padding:28px 16px;position:relative;overflow:hidden;color:var(--cream)}
+.hero:before,.hero:after{content:"";position:absolute;width:340px;height:340px;border:1px solid #c7a66a38;border-radius:50%;top:-190px;right:-120px}.hero:after{top:auto;right:auto;bottom:-220px;left:-100px;width:420px;height:420px}
+.kicker{letter-spacing:4px;color:#dfc58f;font-size:11px;text-transform:uppercase;text-align:center}
+.door-wrap{width:min(390px,90vw);text-align:center;position:relative;z-index:1}
+.instruction{color:#e9dfca;font-size:13px;margin:15px 0 20px}
+.door-frame{height:460px;max-height:62vh;min-height:360px;border:7px solid #b18b52;border-bottom:0;border-radius:190px 190px 0 0;padding:9px;position:relative;background:#a77d48;box-shadow:0 18px 55px #0008;perspective:1000px}
+.door-inside{position:absolute;inset:9px 9px 0;background:linear-gradient(145deg,#f9f2e4,#e9dcc2);border-radius:180px 180px 0 0;display:flex;align-items:center;justify-content:center;color:#263d32;overflow:hidden}
+.door-inside:before{content:"";position:absolute;inset:18px;border:1px solid #c7a66a;border-radius:160px 160px 0 0}
+.initials{font-family:'Amiri',serif;font-size:74px;color:#9b7946;direction:ltr;position:relative}
+.door{position:absolute;inset:9px 9px 0;transform-origin:right center;transition:transform 1.25s cubic-bezier(.2,.75,.2,1);background:linear-gradient(90deg,#593c29,#805c3c 18%,#67472f 55%,#4d3527);border:2px solid #c9a36b;border-radius:180px 180px 0 0;z-index:2;cursor:pointer;display:grid;place-items:center;backface-visibility:hidden}
+.door:before{content:"";position:absolute;inset:18px;border:1px solid #c69d62;border-radius:160px 160px 0 0}
+.door:after{content:"";position:absolute;inset:35px 28px 0;border:1px solid #c69d6255;border-radius:145px 145px 0 0}
+.door.open{transform:rotateY(-108deg)}
+.door-label{font-family:'Amiri',serif;color:#f1d9a9;font-size:28px;z-index:1;text-align:center;line-height:1.5}
+.knob{position:absolute;right:22px;top:56%;width:13px;height:13px;background:#e2bd75;border-radius:50%;box-shadow:0 0 0 4px #4b3325}
+.open-hint{font-size:12px;color:#dfc58f;margin-top:18px}
+.invitation{display:none;max-width:850px;margin:0 auto;padding:72px 22px 80px;text-align:center}
+.invitation.show{display:block;animation:rise .9s ease both}
+@keyframes rise{from{opacity:0;transform:translateY(25px)}to{opacity:1;transform:none}}
+.eyebrow{color:#a3834f;letter-spacing:3px;font-size:12px}
+h1{font:700 clamp(40px,8vw,68px) 'Amiri','Traditional Arabic',serif;color:#263d32;margin:10px 0}
+.intro{font:24px 'Amiri','Traditional Arabic',serif;line-height:1.9;max-width:650px;margin:12px auto 28px}
+.monogram{direction:ltr;font:52px 'Amiri','Traditional Arabic',serif;color:#a3834f;margin:24px auto}
+.rule{width:90px;height:1px;background:var(--gold);margin:25px auto}
+.details{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:30px auto;max-width:680px}
+.detail{padding:17px 10px;border:1px solid #d8c8a9;background:#fff9ef;border-radius:12px}
+.detail b{display:block;color:#9a7845;font-size:12px;margin-bottom:6px}.detail span{font-size:14px}
+.count-title{font-family:'Amiri',serif;font-size:25px;margin:38px 0 12px}
+.countdown{display:flex;justify-content:center;gap:10px;direction:ltr}
+.unit{background:#20382d;color:#fff5e4;border-radius:12px;min-width:76px;padding:12px 8px}
+.unit strong{font-size:27px;display:block;font-weight:600}.unit small{color:#d8bd88;font-size:11px}
+.cta{display:inline-block;border:0;background:#263d32;color:#fff6e8;padding:14px 28px;border-radius:40px;text-decoration:none;cursor:pointer;margin:28px 0 0;box-shadow:0 8px 20px #263d3222}
+.note{font-size:12px;color:#817968;margin-top:15px}
+footer{background:#172820;color:#e9dfca;text-align:center;padding:28px;font:20px 'Amiri','Traditional Arabic',serif}
+.modal{display:none;position:fixed;inset:0;background:#101b16c9;z-index:10;align-items:center;justify-content:center;padding:16px;overflow:auto}
+.modal.show{display:flex}.panel{background:#fbf7ef;border-radius:18px;padding:25px;width:min(560px,100%);max-height:92svh;overflow:auto;box-shadow:0 20px 70px #0006}
+.panel h2{font: bold 30px 'Amiri','Traditional Arabic',serif;text-align:center;margin:0 0 4px;color:#263d32}.panel>p{text-align:center;font-size:13px;color:#777}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field{display:flex;flex-direction:column;gap:5px}.field.full{grid-column:1/-1}.field label{font-size:12px;color:#655b4c}.field input,.field select,.field textarea{border:1px solid #d8cbb5;border-radius:9px;padding:11px;background:white;min-width:0;color:#26332c}.field textarea{min-height:75px;resize:vertical}.actions{display:flex;gap:10px;justify-content:center;margin-top:18px}.actions button{border:0;border-radius:30px;padding:11px 22px;cursor:pointer}.submit{background:#263d32;color:white}.cancel{background:#e9e0d1;color:#40392f}.status{font-size:13px;text-align:center;margin-top:12px;min-height:22px;color:#42634e}
+@media(max-width:560px){.details{grid-template-columns:1fr}.detail{padding:12px}.fields{grid-template-columns:1fr}.field.full{grid-column:auto}.door-frame{height:410px}}
+</style>
+</head>
+<body>
+<section class="hero" aria-label="افتح الدعوة">
+ <div class="door-wrap">
+  <div class="kicker">YOU ARE CORDIALLY INVITED</div>
+  <p class="instruction">دعوة خاصة لحضور ليلة العمر</p>
+  <div class="door-frame">
+   <div class="door-inside"><div class="initials">A <span style="font-size:35px">&</span> M</div></div>
+   <div class="door" id="door" role="button" tabindex="0" aria-label="افتح باب الدعوة"><div class="door-label">اضغط لفتح<br>الدعوة</div><span class="knob"></span></div>
+  </div>
+  <div class="open-hint">انقر على الباب أو اضغط عليه مرتين لفتح الدعوة</div>
+ </div>
+</section>
+<main class="invitation" id="invitation">
+ <div class="eyebrow">بِسْمِ اللهِ نَبْدَأُ فَرْحَتَنَا</div>
+ <div class="monogram">A <span style="font-size:30px">&</span> M</div>
+ <h1>دعوة زفاف</h1>
+ <div class="rule"></div>
+ <p class="intro">بكل الحب والسرور، نتشرّف بدعوتكم لمشاركتنا أجمل لحظات العمر، وحضور ليلةٍ تكتمل فيها فرحتنا بوجودكم. حضوركم يزيد ليلتنا بهجة، ومشاركتكم تصنع ذكرى لا تُنسى.</p>
+ <div class="details">
+  <div class="detail"><b>اليوم والتاريخ</b><span>الاثنين، 9 نوفمبر 2026</span></div>
+  <div class="detail"><b>موعد الحفل</b><span>10:00 مساءً</span></div>
+  <div class="detail"><b>المكان</b><span>يُعلن عن الموقع قريباً</span></div>
+ </div>
+ <div class="rule"></div>
+ <div class="count-title">باقي على ليلة فرحتنا</div>
+ <div class="countdown" aria-live="polite">
+  <div class="unit"><strong id="days">00</strong><small>يوم</small></div>
+  <div class="unit"><strong id="hours">00</strong><small>ساعة</small></div>
+  <div class="unit"><strong id="minutes">00</strong><small>دقيقة</small></div>
+  <div class="unit"><strong id="seconds">00</strong><small>ثانية</small></div>
+ </div>
+ <button class="cta" id="rsvp">تأكيد الحضور وتسجيل البيانات</button>
+ <p class="note">نرجو تأكيد الحضور عبر النموذج، شاكرين لكم مشاركتنا فرحتنا.</p>
+</main>
+<footer>بوجودكم تكتمل فرحتنا — A &amp; M</footer>
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="formTitle">
+ <div class="panel">
+  <h2 id="formTitle">تأكيد الحضور</h2><p>يسعدنا تسجيل ردّكم على دعوتنا</p>
+  <form id="rsvpForm">
+   <div class="fields">
+    <div class="field full"><label for="name">الاسم الكامل *</label><input id="name" name="name" required maxlength="100" autocomplete="name" placeholder="اكتب اسمك"></div>
+    <div class="field"><label for="phone">رقم الجوال *</label><input id="phone" name="phone" required type="tel" autocomplete="tel" placeholder="05xxxxxxxx"></div>
+    <div class="field"><label for="email">البريد الإلكتروني (اختياري)</label><input id="email" name="email" type="email" autocomplete="email" placeholder="name@example.com"></div>
+    <div class="field"><label for="attendance">تأكيد الحضور *</label><select id="attendance" name="attendance" required><option value="yes">سأحضر بإذن الله</option><option value="no">أعتذر عن الحضور</option></select></div>
+    <div class="field"><label for="guests">عدد الأشخاص معك</label><select id="guests" name="guests"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></div>
+    <div class="field"><label for="arrival">وقت الوصول المتوقع</label><input id="arrival" name="arrival" type="time" value="22:00"></div>
+    <div class="field"><label for="food">تفضيل الضيافة</label><select id="food" name="food"><option value="none">لا يوجد تفضيل</option><option value="vegetarian">نباتي</option><option value="other">سأتواصل بخصوص ذلك</option></select></div>
+    <div class="field full"><label for="message">رسالة تهنئة (اختياري)</label><textarea id="message" name="message" maxlength="500" placeholder="اكتب تهنئتك للعروسين..."></textarea></div>
+   </div>
+   <div class="actions"><button class="submit" type="submit">إرسال التأكيد</button><button class="cancel" type="button" id="close">إغلاق</button></div>
+   <div class="status" id="status" role="status"></div>
+  </form>
+ </div>
+</div>
+<script>
+/* ضع رابط واجهة الخادم هنا بعد تجهيزها. مثال: https://your-domain.com/api/rsvp */
+const API_ENDPOINT = "";
+const weddingDate = new Date("2026-11-09T22:00:00+03:00");
+const door = document.getElementById("door");
+const invitation = document.getElementById("invitation");
+function openDoor(){door.classList.add("open");setTimeout(()=>{invitation.classList.add("show");invitation.scrollIntoView({behavior:"smooth"});},450);}
+door.addEventListener("click",openDoor);
+door.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();openDoor();}});
+function tick(){
+ let diff=Math.max(0,weddingDate-Date.now());
+ const vals={days:Math.floor(diff/86400000),hours:Math.floor(diff%86400000/3600000),minutes:Math.floor(diff%3600000/60000),seconds:Math.floor(diff%60000/1000)};
+ Object.entries(vals).forEach(([id,v])=>document.getElementById(id).textContent=String(v).padStart(2,"0"));
+}
+tick();setInterval(tick,1000);
+const modal=document.getElementById("modal");
+document.getElementById("rsvp").onclick=()=>modal.classList.add("show");
+document.getElementById("close").onclick=()=>modal.classList.remove("show");
+modal.addEventListener("click",e=>{if(e.target===modal)modal.classList.remove("show");});
+document.getElementById("rsvpForm").addEventListener("submit",async e=>{
+ e.preventDefault();const status=document.getElementById("status");const data=Object.fromEntries(new FormData(e.target).entries());
+ data.submittedAt=new Date().toISOString();data.event="A & M wedding";data.eventDate="2026-11-09T22:00:00+03:00";
+ status.textContent="جارٍ إرسال بياناتك...";
+ try{
+  if(API_ENDPOINT){
+   const response=await fetch(API_ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(data)});
+   if(!response.ok)throw new Error("تعذر حفظ البيانات على الخادم");
+   status.textContent="تم إرسال تأكيدك بنجاح. شكراً لمشاركتنا الفرحة!";
+  }else{
+   const key="amWeddingRsvps";const entries=JSON.parse(localStorage.getItem(key)||"[]");entries.push(data);localStorage.setItem(key,JSON.stringify(entries));
+   status.textContent="تم حفظ الرد على هذا الجهاز كتجربة. لم يُرسل إلى خادم بعد.";
+  }
+  e.target.reset();
+ }catch(err){status.textContent="لم نتمكن من حفظ البيانات. حاول مرة أخرى لاحقاً.";}
+});
+</script>
+</body></html>
